@@ -119,9 +119,7 @@ export function ConversationList({
   const activeFilter = FILTER_OPTIONS.find((o) => o.value === filter);
 
   return (
-    <div className="flex h-full w-full flex-col border-r border-slate-800 bg-slate-900 lg:w-80">
-      {/* Search + Filter */}
-      <div className="space-y-2 border-b border-slate-800 p-3">
+         <div className="flex flex-1 w-full flex-col border-r border-slate-800 bg-slate-900 lg:w-80">  
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
           <Input
