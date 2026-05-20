@@ -44,7 +44,7 @@ function DashboardShellInner({ children }: { children: React.ReactNode }) {
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header onOpenSidebar={() => setSidebarOpen(true)} />
         {/* Thinner horizontal padding on mobile so cards have room to breathe. */}
-        <main className="flex-1 overflow-hidden">{children}</main>
+       <main className="flex flex-1 flex-col overflow-hidden min-h-0">{children}</main>
       </div>
     </div>
   );
