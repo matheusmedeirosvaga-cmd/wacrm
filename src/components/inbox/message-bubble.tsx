@@ -60,7 +60,6 @@ function MediaImage({ url, alt }: { url: string; alt: string }) {
   const loadImage = useCallback(async () => {
     if (!url) return;
 
-    // Proxy URLs need auth fetch to create blob URL
     if (url.startsWith("/api/whatsapp/media/")) {
       try {
         const res = await fetch(url);
@@ -176,7 +175,7 @@ function MessageContent({ message }: { message: Message }) {
         return <MediaUnavailable label={message.content_text || "Document"} />;
       }
       return (
-        <a
+        
           href={message.media_url}
           target="_blank"
           rel="noopener noreferrer"
@@ -212,6 +211,13 @@ function MessageContent({ message }: { message: Message }) {
         </div>
       );
 
+    case "button":
+      return (
+        <p className="whitespace-pre-wrap break-words text-sm">
+          {message.content_text}
+        </p>
+      );
+
     default:
       return (
         <p className="whitespace-pre-wrap break-words text-sm">
@@ -231,8 +237,6 @@ export function MessageBubble({
   const isAgent = message.sender_type === "agent" || message.sender_type === "bot";
   const time = format(new Date(message.created_at), "HH:mm");
 
-  // Row alignment + width cap are owned by <MessageActions> so its hover
-  // group matches the bubble's content area, not the full row.
   return (
     <div
       className={cn(
